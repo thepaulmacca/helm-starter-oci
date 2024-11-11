@@ -1,0 +1,6 @@
+name: "starter-oci"
+version: "0.1.0"
+usage: "Pull, Update and Delete Helm starter charts from an OCI registry"
+description: "A Helm plugin to pull, update, and delete starter charts from an OCI registry."
+hook-scripts:
+  - path: "$HELM_PLUGIN_DIR/starter-oci.sh"
