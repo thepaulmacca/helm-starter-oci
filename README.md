@@ -35,7 +35,7 @@ helm starter-oci update oci://ghcr.io/thepaulmacca/charts/deployment --version 0
 
 ### list
 
-List all locally stored starter charts. For example:
+List all locally stored starter charts.
 
 ```bash
 helm starter-oci list
