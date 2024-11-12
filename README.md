@@ -33,6 +33,14 @@ Updates a starter chart to the specified version from the OCI registry if it alr
 helm starter-oci update oci://ghcr.io/thepaulmacca/charts/deployment --version 0.2.0
 ```
 
+### list
+
+List all locally stored starter charts. For example:
+
+```bash
+helm starter-oci list
+```
+
 ### delete
 
 Deletes a locally stored starter chart. For example:

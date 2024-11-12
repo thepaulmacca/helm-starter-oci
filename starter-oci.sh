@@ -21,6 +21,7 @@ function show_help() {
     echo "Commands:"
     echo "  pull <registry_url> --version <version>   - Pull a starter chart from an OCI registry"
     echo "  update <registry_url> --version <version> - Update a starter chart if a newer version is available"
+    echo "  list                                      - List all locally stored starter charts"
     echo "  delete <chart_name>                       - Delete a starter chart from the local system"
     echo "  help                                      - Show this help message"
     echo ""
@@ -93,6 +94,18 @@ function update_chart() {
     echo "Chart '$chart_name' (version $version) updated successfully in $STARTERS_DIRECTORY."
 }
 
+# List command
+function list_charts() {
+    if [ -z "$(ls -A "$STARTERS_DIRECTORY")" ]; then
+        echo "No starter charts found in $STARTERS_DIRECTORY."
+    else
+        echo "Locally stored starter charts:"
+        for chart_dir in "$STARTERS_DIRECTORY"/*; do
+            [ -d "$chart_dir" ] && echo " - $(basename "$chart_dir")"
+        done
+    fi
+}
+
 # Delete command
 function delete_chart() {
     local chart_name="$1"
@@ -118,6 +131,9 @@ case "$1" in
         ;;
     delete)
         delete_chart "$2"
+        ;;
+    list)
+        list_charts
         ;;
     help)
         show_help
