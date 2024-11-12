@@ -10,10 +10,6 @@ helm plugin install https://github.com/thepaulmacca/helm-starter-oci
 
 ## Commands
 
-> [!NOTE]
-> The `<registry_url>` must start with `oci://`. If it doesn’t, the command will return an error.
-> The `--version` flag is mandatory for `pull` and `update` commands.
-
 ### pull
 
 Pulls a starter chart from an OCI registry and saves it to your local Helm starters directory (`$(helm env HELM_DATA_HOME)/starters`). This chart can then be used with `helm create`. For example:
