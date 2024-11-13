@@ -1,0 +1,27 @@
+name: Create Release
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Read version from plugin.yaml
+        id: read_version
+        run: |
+          version=$(grep '^version:' plugin.yaml | awk '{print $2}')
+          echo "::set-output name=version::$version"
+
+      - name: Create git tag
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git tag -a "v${{ steps.read_version.outputs.version }}" -m "Release version ${{ steps.read_version.outputs.version }}"
+          git push origin "v${{ steps.read_version.outputs.version }}"
