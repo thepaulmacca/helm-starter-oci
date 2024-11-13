@@ -16,7 +16,7 @@ jobs:
       - name: Read version from plugin.yaml
         id: read_version
         run: |
-          version=$(grep '^version:' plugin.yaml | awk '{print $2}') >> $GITHUB_OUTPUT
+          echo version=$(grep '^version:' plugin.yaml | awk '{print $2}') >> $GITHUB_OUTPUT
 
       - name: Create release
         uses: actions/create-release@v1
