@@ -19,9 +19,10 @@ jobs:
           version=$(grep '^version:' plugin.yaml | awk '{print $2}')
           echo "::set-output name=version::$version"
 
-      - name: Create git tag
-        run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git tag -a "v${{ steps.read_version.outputs.version }}" -m "Release version ${{ steps.read_version.outputs.version }}"
-          git push origin "v${{ steps.read_version.outputs.version }}"
+      - name: Create release
+        uses: actions/create-release@v1
+        env:
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+            tag_name: ${{ steps.read_version.outputs.version }}
+            release_name: ${{ steps.read_version.outputs.version }}
